@@ -11,47 +11,47 @@ namespace OpenCRMOptAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LottiController : ControllerBase
+    public class ModelliLottiController : ControllerBase
     {
         private readonly OptDbContext _context;
 
-        public LottiController(OptDbContext context)
+        public ModelliLottiController(OptDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Lotti
+        // GET: api/ModelliLotti
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Lotti>>> GetLottis()
+        public async Task<ActionResult<IEnumerable<ModelliLotti>>> GetModelliLottis()
         {
-            return await _context.Lottis.ToListAsync();
+            return await _context.ModelliLottis.ToListAsync();
         }
 
-        // GET: api/Lotti/5
+        // GET: api/ModelliLotti/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Lotti>> GetLotti(long id)
+        public async Task<ActionResult<ModelliLotti>> GetModelliLotti(int id)
         {
-            var lotti = await _context.Lottis.FindAsync(id);
+            var modelliLotti = await _context.ModelliLottis.FindAsync(id);
 
-            if (lotti == null)
+            if (modelliLotti == null)
             {
                 return NotFound();
             }
 
-            return lotti;
+            return modelliLotti;
         }
 
-        // PUT: api/Lotti/5
+        // PUT: api/ModelliLotti/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLotti(long id, Lotti lotti)
+        public async Task<IActionResult> PutModelliLotti(int id, ModelliLotti modelliLotti)
         {
-            if (id != lotti.LottoId)
+            if (id != modelliLotti.ModelloId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(lotti).State = EntityState.Modified;
+            _context.Entry(modelliLotti).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace OpenCRMOptAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LottiExists(id))
+                if (!ModelliLottiExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace OpenCRMOptAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Lotti
+        // POST: api/ModelliLotti
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Lotti>> PostLotti(Lotti lotti)
+        public async Task<ActionResult<ModelliLotti>> PostModelliLotti(ModelliLotti modelliLotti)
         {
-            _context.Lottis.Add(lotti);
+            _context.ModelliLottis.Add(modelliLotti);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetLotti), new { id = lotti.LottoId }, lotti);
+            return CreatedAtAction("GetModelliLotti", new { id = modelliLotti.ModelloId }, modelliLotti);
         }
 
-        // DELETE: api/Lotti/5
+        // DELETE: api/ModelliLotti/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLotti(long id)
+        public async Task<IActionResult> DeleteModelliLotti(int id)
         {
-            var lotti = await _context.Lottis.FindAsync(id);
-            if (lotti == null)
+            var modelliLotti = await _context.ModelliLottis.FindAsync(id);
+            if (modelliLotti == null)
             {
                 return NotFound();
             }
 
-            _context.Lottis.Remove(lotti);
+            _context.ModelliLottis.Remove(modelliLotti);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LottiExists(long id)
+        private bool ModelliLottiExists(int id)
         {
-            return _context.Lottis.Any(e => e.LottoId == id);
+            return _context.ModelliLottis.Any(e => e.ModelloId == id);
         }
     }
 }
