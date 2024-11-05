@@ -1,4 +1,4 @@
-namespace OpenCRMOptApp.Models
+namespace App.Models
 {
     public class ErrorViewModel
     {

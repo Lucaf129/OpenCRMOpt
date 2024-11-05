@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptModels", "OpenCRMOpt\OpenCRMOptModels.csproj", "{C9CFE536-5821-46A1-B9DB-28AD35757CBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCRMOptAPI", "OpenCRMOptAPI\OpenCRMOptAPI.csproj", "{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptAPI", "OpenCRMOptAPI\OpenCRMOptAPI.csproj", "{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCRMOptApp", "OpenCRMOptApp\OpenCRMOptApp.csproj", "{6D0210F4-67D5-41A8-BE23-3999AB2702C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{466E10D7-0F6E-4199-B440-2D4EEE773A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D0210F4-67D5-41A8-BE23-3999AB2702C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D0210F4-67D5-41A8-BE23-3999AB2702C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D0210F4-67D5-41A8-BE23-3999AB2702C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D0210F4-67D5-41A8-BE23-3999AB2702C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

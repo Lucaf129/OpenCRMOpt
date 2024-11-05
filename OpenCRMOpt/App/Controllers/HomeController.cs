@@ -1,8 +1,8 @@
+using App.Models;
 using Microsoft.AspNetCore.Mvc;
-using OpenCRMOptApp.Models;
 using System.Diagnostics;
 
-namespace OpenCRMOptApp.Controllers
+namespace App.Controllers
 {
     public class HomeController : Controller
     {

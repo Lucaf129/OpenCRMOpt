@@ -7,15 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="jquery-globalize" Version="1.4.2" />
+    <PackageReference Include="jquery.validation.globalize" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\OpenCRMOpt\OpenCRMOptModels.csproj" />
   </ItemGroup>
 
 </Project>
