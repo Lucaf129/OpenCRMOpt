@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using App.Data;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using App.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MovieContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MovieContext") ?? throw new InvalidOperationException("Connection string 'MovieContext' not found.")));
@@ -11,6 +12,13 @@ builder.Services.AddDbContext<MovieContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
