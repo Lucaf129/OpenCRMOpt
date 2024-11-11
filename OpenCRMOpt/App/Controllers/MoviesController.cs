@@ -23,6 +23,7 @@ namespace App.Controllers
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Movie == null)
+            {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
             }
 
