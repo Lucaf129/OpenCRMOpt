@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptModels", "OpenCRM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptAPI", "OpenCRMOptAPI\OpenCRMOptAPI.csproj", "{355A0A6A-1FEF-447F-AB65-F16FEEFA4B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{466E10D7-0F6E-4199-B440-2D4EEE773A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{466E10D7-0F6E-4199-B440-2D4EEE773A5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCRMOptApp", "OpenCRMOptApp\OpenCRMOptApp.csproj", "{E4C6F54D-A58A-4268-8575-A151F79E3026}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{466E10D7-0F6E-4199-B440-2D4EEE773A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
