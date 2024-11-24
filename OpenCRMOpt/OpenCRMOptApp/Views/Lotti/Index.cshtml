@@ -1,51 +1,45 @@
 ﻿@model IEnumerable<OpenCRMOptModels.Lotti>
 
 <table class="table">
-    @* <thead>
+    <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model![0].Title)
+                @Html.DisplayNameFor(model => model!.First().LottoId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies![0].ReleaseDate)
+                @Html.DisplayNameFor(model => model!.First().Modello)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Genre)
+                @Html.DisplayNameFor(model => model!.First().Note)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movies![0].Rating)
+                @Html.DisplayNameFor(model => model!.First().Quantita)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Movies!)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.LottoId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    @Html.DisplayFor(modelItem => item.Modello)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
+                    @Html.DisplayFor(modelItem => item.Note)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Quantita)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
+                @* <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                </td> *@
             </tr>
         }
-    </tbody> *@
+    </tbody>
 </table>

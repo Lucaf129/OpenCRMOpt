@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using OpenCRMOptModels;
+using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 
@@ -27,13 +30,19 @@ namespace OpenCRMOptApp.Controllers
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
-                using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
-
                 
+                var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+                StreamReader reader = new StreamReader(contentStream);
+                string text = reader.ReadToEnd();
+
+                var lottiList =JsonConvert.DeserializeObject<List<Lotti>>(text);
+
+                //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
+                return View(lottiList);
             }
 
-
             return View();
+            
         }
     }
 }
