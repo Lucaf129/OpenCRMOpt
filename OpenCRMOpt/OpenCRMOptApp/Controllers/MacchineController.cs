@@ -4,12 +4,10 @@ using OpenCRMOptModels;
 
 namespace OpenCRMOptApp.Controllers
 {
-    public class LottiController : Controller
+    public class MacchineController : Controller
     {
-
-
         private readonly IHttpClientFactory _httpClientFactory;
-        public LottiController(IHttpClientFactory httpClientFactory)
+        public MacchineController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -19,7 +17,7 @@ namespace OpenCRMOptApp.Controllers
 
             var httpClient = _httpClientFactory.CreateClient();
 
-            var httpResponseMessage = await httpClient.GetAsync("http://localhost:5055/api/Lotti");
+            var httpResponseMessage = await httpClient.GetAsync("http://localhost:5055/api/Macchine");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -28,10 +26,10 @@ namespace OpenCRMOptApp.Controllers
                 StreamReader reader = new StreamReader(contentStream);
                 string text = reader.ReadToEnd();
 
-                var lottiList = JsonConvert.DeserializeObject<List<Lotti>>(text);
+                var macchineList = JsonConvert.DeserializeObject<List<Macchine>>(text);
 
                 //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
-                return View(lottiList);
+                return View(macchineList);
             }
 
             return View();
