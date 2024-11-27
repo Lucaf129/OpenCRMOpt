@@ -5,7 +5,12 @@ namespace OpenCRMOptApp.Controllers
     public class OttimizzazioneController : Controller
     {
 
-        [HttpPost]
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult OttimizzaNaive()
         {
             return View();
