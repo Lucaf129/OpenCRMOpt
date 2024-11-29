@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OpenCRMOptModels;
 
 namespace OpenCRMOptAPI.Controllers
@@ -29,7 +30,9 @@ namespace OpenCRMOptAPI.Controllers
 
                 var unwrapped = (OkObjectResult)matriceLottiMacchine;
 
-                var res = (List<LottiMacchine>)unwrapped.Value;
+                var res = unwrapped.Value;
+
+                var json = JsonConvert.SerializeObject(res);
             }
             catch (Exception ex)
             {

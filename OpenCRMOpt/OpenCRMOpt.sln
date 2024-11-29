@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptAPI", "OpenCRMOpt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{466E10D7-0F6E-4199-B440-2D4EEE773A5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCRMOptApp", "OpenCRMOptApp\OpenCRMOptApp.csproj", "{E4C6F54D-A58A-4268-8575-A151F79E3026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCRMOptApp", "OpenCRMOptApp\OpenCRMOptApp.csproj", "{E4C6F54D-A58A-4268-8575-A151F79E3026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCRMOptTest", "OpenCRMOptTest\OpenCRMOptTest.csproj", "{2A23D1E2-F876-4D1D-B06C-96915736C7CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4C6F54D-A58A-4268-8575-A151F79E3026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A23D1E2-F876-4D1D-B06C-96915736C7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A23D1E2-F876-4D1D-B06C-96915736C7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A23D1E2-F876-4D1D-B06C-96915736C7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A23D1E2-F876-4D1D-B06C-96915736C7CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
