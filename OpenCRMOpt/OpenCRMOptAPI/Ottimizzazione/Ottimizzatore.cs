@@ -7,11 +7,28 @@ namespace OpenCRMOptAPI.Ottimizzazione
 
         public Ottimizzatore() { }
 
-        public RisultatoOttimizzazione OttimizzaConEuristica(List<LottiMacchine> lottiMacchine) 
+        public RisultatoOttimizzazione OttimizzaConEuristica(List<LottiMacchine> lottiMacchine, List<ModelliLotti> modelliLotti) 
         {
+            var matriceLottiMacchine = getMatriceLottiMacchine(modelliLotti);
+
+            var macchine = new List<List<int>>();
+            // ogni int è un lotto che mando in produzione su quella macchina
+
+            var clearLottiMacchine = new List<List<int>>();
+            // questa lista dovrà contenere gli indici di ogni macchina che può andare nel i-esimo lotto
 
 
-
+            for(int j =0; j <= matriceLottiMacchine.Count; j++) // qui le macchine sono sulle colonne
+            {
+                for (int i = 0; i < matriceLottiMacchine[j].Count; i++) 
+                { 
+                    if (matriceLottiMacchine[j][i])
+                    {
+                        clearLottiMacchine[j] = new List<int>();
+                        clearLottiMacchine[j].Add(i);
+                    }
+                }
+            }
 
             return null;
         }
