@@ -43,7 +43,44 @@ namespace OpenCRMOptTest
                     CollectionAssert.AreEqual(list, result[i]);
                     i++;
                 }
-                
+            }
+        }
+
+        [TestMethod]
+        public void GetMatriceLottiMacchineDerivata()
+        {
+            var serializedInput =
+                "[{'modelloId':1,'descrizione':'Modello A','macchineCompatibili':'1;0;0;1;0','lottis':[]}," +
+                "{'modelloId':2,'descrizione':'Modello B','macchineCompatibili':'0;0;1;0;1','lottis':[]}, "+
+                "{'modelloId':3,'descrizione':'Modello C','macchineCompatibili':'0;1;0;0;0','lottis':[]},"+
+                "{'modelloId':4,'descrizione':'Modello D','macchineCompatibili':'1;0;1;0;0','lottis':[]}, "+
+                "{'modelloId':5,'descrizione':'Modello E','macchineCompatibili':'0;0;0;1;0','lottis':[]}, "+
+                "{'modelloId':6,'descrizione':'Modello F','macchineCompatibili':'0;0;1;1;0','lottis':[]}]";
+            var ottimizzatore = new Ottimizzatore();
+
+            // deserializzo la stringa
+            var modelliLottiList = JsonConvert.DeserializeObject<List<ModelliLotti>>(serializedInput);
+
+            var expected = new List<List<int>>() {
+                new List<int>(){0,3},
+                new List<int>(){2,4},
+                new List<int>(){1},
+                new List<int>(){0,2},
+                new List<int>(){3},
+                new List<int>(){2,3} };
+
+
+            if (modelliLottiList != null)
+            {
+                var result = ottimizzatore.getMatriceLottiMacchineDerivata(modelliLottiList);
+
+                int i = 0;
+                foreach (var list in expected)
+                {
+                    CollectionAssert.AreEqual(list, result[i]);
+                    i++;
+                }
+
             }
 
         }
@@ -70,7 +107,7 @@ namespace OpenCRMOptTest
 
             if (lottiMacchineList != null)
             {
-                RisultatoOttimizzazione result = ottimizzatore.OttimizzaConEuristica(lottiMacchineList);
+                //RisultatoOttimizzazione result = ottimizzatore.OttimizzaConEuristica(lottiMacchineList);
 
 
             }
