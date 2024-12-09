@@ -1,46 +1,63 @@
-﻿using OpenCRMOptModels;
+﻿using Microsoft.AspNetCore.Mvc;
+using OpenCRMOptAPI.Controllers;
+using OpenCRMOptModels;
 
 namespace OpenCRMOptAPI.Ottimizzazione
 {
     public class Ottimizzatore
     {
+        private readonly OptDbContext _context;
 
-        public Ottimizzatore() { }
-
-        public RisultatoOttimizzazione OttimizzaConEuristica(List<LottiMacchine> lottiMacchine, List<ModelliLotti> modelliLotti) 
+        public Ottimizzatore(OptDbContext context)
         {
-            var matriceLottiMacchine = getMatriceLottiMacchineDerivata(modelliLotti);
+            _context = context;
+        }
+
+        public async Task<RisultatoOttimizzazione> OttimizzaConEuristica(List<LottiMacchine> lottiMacchine)
+        {
+
+            var matriceLottiMacchine = getMatriceLottiMacchineDerivata(lottiMacchine);
             var risultato = new RisultatoOttimizzazione();
 
-            risultato.Initialize(getNMacchine(modelliLotti));
+            risultato.Initialize(getNMacchine(lottiMacchine));
 
             var macchine = new List<List<int>>();
             // ogni int è un lotto che mando in produzione su quella macchina
             int i = 0;
-           foreach (var lotto in matriceLottiMacchine)
+            foreach (var lotto in lottiMacchine)
             {
+                var minPezziAssegnati = int.MaxValue;
+                var minIndiceMacchina = -1;
 
-                // devo stabilire quanti lotti ha già da produrre quella macchina
-                var assegnamento = risultato.PezziAssegnati.Min(x => matriceLottiMacchine[i].Contains(x));
 
-                //risultato.AssegnaLottoAMacchina() // get lotto from index
+                foreach (var macchineAssegnabili in matriceLottiMacchine[i])
+                {
+                    var pezziAssegnatiAllaMacchinaCorrente = risultato.PezziAssegnati[macchineAssegnabili];
+
+                    if (pezziAssegnatiAllaMacchinaCorrente < minPezziAssegnati)
+                    {
+                        minPezziAssegnati = pezziAssegnatiAllaMacchinaCorrente;
+                        minIndiceMacchina = macchineAssegnabili;
+                    }
+                }
+
+                risultato.AssegnaLottoAMacchina(lottiMacchine[i], minIndiceMacchina);
 
                 i++;
             }
-            
 
-            return null;
+            return risultato;
         }
 
-        private int getNMacchine(List<ModelliLotti> modelliLotti)
+        private int getNMacchine(List<LottiMacchine> lotto)
         {
-            int res = modelliLotti.First()!.MacchineCompatibili.Count(c => c == ';') + 1;
+            int res = lotto.First()!.MacchineCompatibili.Count(c => c == ';') + 1;
             // conto i punti e virgola nel csv e aggiungo 1 per avere il numero di macchine
 
             return res;
         }
 
-        public List<List<int>> getMatriceLottiMacchineDerivata(List<ModelliLotti> modelliLotti)
+        public List<List<int>> getMatriceLottiMacchineDerivata(List<LottiMacchine> modelliLotti)
         {
             // in questa matrice ci sono le righe(lotti) e una lista di interi che stanno a significare che è producibile sulla macchina i-esima.
             var matriceLottiMacchine = getMatriceLottiMacchine(modelliLotti);
@@ -62,14 +79,14 @@ namespace OpenCRMOptAPI.Ottimizzazione
 
         }
 
-        public List<List<bool>> getMatriceLottiMacchine(List<ModelliLotti> modelliLotti)
+        public List<List<bool>> getMatriceLottiMacchine(List<LottiMacchine> lottiMacchine)
         {
             var matriceLottiMacchine = new List<List<bool>>();
             var listLottiMacchine = new List<bool>();
 
-            foreach (var modelli in modelliLotti) 
+            foreach (var lotto in lottiMacchine)
             {
-                listLottiMacchine = getListaLottiMacchine(modelli);
+                listLottiMacchine = getListaLottiMacchine(lotto);
                 matriceLottiMacchine.Add(listLottiMacchine);
             }
 
@@ -77,14 +94,14 @@ namespace OpenCRMOptAPI.Ottimizzazione
 
         }
 
-        private List<bool> getListaLottiMacchine(ModelliLotti modelli)
+        private List<bool> getListaLottiMacchine(LottiMacchine lotto)
         {
             var listLottiMacchine = new List<bool>();
-            var assegnamenti = modelli.MacchineCompatibili.Split(';');
+            var assegnamenti = lotto.MacchineCompatibili.Split(';');
 
-            foreach(var assegnamento in assegnamenti)
+            foreach (var assegnamento in assegnamenti)
             {
-                if(assegnamento == "1")
+                if (assegnamento == "1")
                 {
                     listLottiMacchine.Add(true);
                 }
