@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OpenCRMOptAPI.Controllers;
 using OpenCRMOptModels;
+using System.Reflection.PortableExecutable;
 
 namespace OpenCRMOptAPI.Ottimizzazione
 {
@@ -114,5 +115,77 @@ namespace OpenCRMOptAPI.Ottimizzazione
             return listLottiMacchine;
 
         }
+
+        public List<RisultatoOttimizzazione> OttimizzaNaive(List<LottiMacchine> lottiMacchineList)
+        {
+            var matriceLottiMacchine = getMatriceLottiMacchineDerivata(lottiMacchineList);
+
+            List<RisultatoOttimizzazione> risultati = new List<RisultatoOttimizzazione>();
+
+            var nMacchine = getNMacchine(lottiMacchineList);
+
+            var res = new RisultatoOttimizzazione();
+
+            res.Initialize(nMacchine);
+
+            //risultati.AddRange(OttimizzaNaiveRicorsiva(res ,matriceLottiMacchine, lottiMacchineList, risultati, 0));
+
+
+
+
+            return risultati;
+        }
+
+        private IEnumerable<RisultatoOttimizzazione> OttimizzaNaiveRicorsiva(RisultatoOttimizzazione res, List<List<int>> matriceLottiMacchine, List<LottiMacchine> lottiMacchineList, List<RisultatoOttimizzazione> risultati, int i)
+        {
+
+            var nMacchine = getNMacchine(lottiMacchineList);
+            if (i== matriceLottiMacchine.Count - 1)
+            {
+
+                foreach (var macchinaAssegnabile in matriceLottiMacchine[i])
+                {
+                    //var r = new RisultatoOttimizzazione();
+
+                    //r.Initialize(nMacchine);
+
+                    res.AssegnaLottoAMacchina(lottiMacchineList[i], macchinaAssegnabile);
+
+                    risultati.Add(res);
+
+                    res.DisassegnaLottoAMacchina(lottiMacchineList[i], macchinaAssegnabile);
+
+                }
+                return risultati;
+            }
+            else
+            {
+                foreach (var macchinaAssegnabile in matriceLottiMacchine[i])
+                {
+
+                    res.AssegnaLottoAMacchina(lottiMacchineList[i], macchinaAssegnabile);
+
+                    return OttimizzaNaiveRicorsiva(res, matriceLottiMacchine, lottiMacchineList, risultati, i+1);
+
+                    //res.DisassegnaLottoAMacchina(lottiMacchineList[i], macchinaAssegnabile);
+                }
+                return risultati;
+            }
+
+        }
+
+        
+
+        public List<RisultatoOttimizzazione> OttimizzaNaive2(List<LottiMacchine> lottiMacchineList)
+        {
+
+            var matriceLottiMacchine = getMatriceLottiMacchineDerivata(lottiMacchineList);
+
+            var res = matriceLottiMacchine.CartesianProduct();
+
+
+            return null;
+        }
+
     }
 }

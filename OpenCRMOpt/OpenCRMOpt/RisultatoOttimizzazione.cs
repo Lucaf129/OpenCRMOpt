@@ -28,5 +28,11 @@ namespace OpenCRMOptModels
             Assegnamenti[indiceMacchina].Add(lotto.LottoId);
             PezziAssegnati[indiceMacchina] += lotto.Quantita;
         }
+
+        public void DisassegnaLottoAMacchina(LottiMacchine lotto, int indiceMacchina)
+        {
+            Assegnamenti[indiceMacchina].RemoveAt(Assegnamenti[indiceMacchina].LastIndexOf(lotto.LottoId));
+            PezziAssegnati[indiceMacchina] -= lotto.Quantita;
+        }
     }
 }
