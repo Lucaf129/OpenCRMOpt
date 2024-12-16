@@ -29,7 +29,7 @@ namespace OpenCRMOptApp.Controllers
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-            var httpResponseMessage = await httpClient.GetAsync("http://localhost:5055/api/Ottimizzazione?heuristic=true");
+            var httpResponseMessage = await httpClient.GetAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneConEuristica");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -38,7 +38,7 @@ namespace OpenCRMOptApp.Controllers
                 StreamReader reader = new StreamReader(contentStream);
                 string text = reader.ReadToEnd();
 
-                var modelliLottiList = JsonConvert.DeserializeObject<List<ModelliLotti>>(text);
+                var modelliLottiList = JsonConvert.DeserializeObject<RisultatoOttimizzazione>(text);
 
                 //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
                 return View(modelliLottiList);

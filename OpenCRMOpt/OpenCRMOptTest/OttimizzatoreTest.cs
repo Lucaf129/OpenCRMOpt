@@ -167,9 +167,9 @@ namespace OpenCRMOptTest
             {
                 RisultatoOttimizzazione result = ottimizzatore.OttimizzaNaive(lottiMacchineList);
 
-               // var actualResult = JsonConvert.SerializeObject(result);
+                int peso = result.GetPeso();
 
-                //Assert.AreEqual(serializedOutput, actualResult);
+                Assert.AreEqual(1500, peso);
             }
 
 
