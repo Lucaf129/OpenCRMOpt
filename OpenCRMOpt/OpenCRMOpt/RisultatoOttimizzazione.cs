@@ -34,5 +34,10 @@ namespace OpenCRMOptModels
             Assegnamenti[indiceMacchina].RemoveAt(Assegnamenti[indiceMacchina].LastIndexOf(lotto.LottoId));
             PezziAssegnati[indiceMacchina] -= lotto.Quantita;
         }
+
+        public int GetPeso()
+        {
+            return PezziAssegnati.Max();
+        }
     }
 }
