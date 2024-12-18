@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OpenCRMOptAPI.Ottimizzazione;
 using OpenCRMOptModels;
+using System.Diagnostics;
 
 namespace OpenCRMOptAPI.Controllers
 {
@@ -16,8 +17,8 @@ namespace OpenCRMOptAPI.Controllers
             _context = context;
         }
 
-        // GET: api/OttimizzazioneConEuristica
-        [HttpGet("OttimizzazioneConEuristica")]
+            // GET: api/OttimizzazioneConEuristica
+        [HttpPost("OttimizzazioneConEuristica")]
         public async Task<ActionResult<RisultatoOttimizzazione>> GetOttimizzazioneConEuristica()
         {
 
@@ -39,7 +40,14 @@ namespace OpenCRMOptAPI.Controllers
 
                 var ottimizzatore = new Ottimizzatore(_context);
 
-                var res = await ottimizzatore.OttimizzaConEuristica( matriceLM);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                var res = await ottimizzatore.OttimizzaConEuristica(matriceLM);
+
+                stopwatch.Stop();
+                res.TempoTrascorso = stopwatch.ElapsedMilliseconds;
+               
 
                 return Ok(res);
 
@@ -72,7 +80,15 @@ namespace OpenCRMOptAPI.Controllers
 
                 var ottimizzatore = new Ottimizzatore(_context);
 
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 var res = await ottimizzatore.OttimizzaConEuristica(matriceLM);
+
+                stopwatch.Stop();
+                //elapsed_time = stopwatch.ElapsedMilliseconds;
+
+                
 
                 return Ok(res);
 

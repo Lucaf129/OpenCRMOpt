@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using OpenCRMOptApp.ViewModels;
 using OpenCRMOptModels;
 
 namespace OpenCRMOptApp.Controllers
@@ -15,7 +16,15 @@ namespace OpenCRMOptApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+
+            OttimizzazioneViewModel model = new OttimizzazioneViewModel();
+
+            model.RisultatoConEuristica = new RisultatoOttimizzazione();
+
+            model.RisultatoConEuristica.Initialize(0);
+
+            return View(model);
+
         }
 
         [HttpGet]
@@ -29,7 +38,7 @@ namespace OpenCRMOptApp.Controllers
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-            var httpResponseMessage = await httpClient.GetAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneConEuristica");
+            var httpResponseMessage = await httpClient.PostAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneConEuristica", null);
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -38,13 +47,22 @@ namespace OpenCRMOptApp.Controllers
                 StreamReader reader = new StreamReader(contentStream);
                 string text = reader.ReadToEnd();
 
-                var modelliLottiList = JsonConvert.DeserializeObject<RisultatoOttimizzazione>(text);
+                RisultatoOttimizzazione res = new RisultatoOttimizzazione();
+
+                res = JsonConvert.DeserializeObject<RisultatoOttimizzazione>(text);
 
                 //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
-                return View(modelliLottiList);
+
+                OttimizzazioneViewModel model = new OttimizzazioneViewModel();
+
+                //res.GetPeso();
+
+                model.RisultatoConEuristica = res;
+
+                return View("Index", model);
             }
 
-            return View();
+            return View("Index");
         }
     }
 }

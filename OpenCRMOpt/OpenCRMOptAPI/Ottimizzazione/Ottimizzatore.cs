@@ -144,7 +144,7 @@ namespace OpenCRMOptAPI.Ottimizzazione
                     i++;
                 }
 
-                int peso = res.GetPeso();
+                int peso = res.Peso;
 
                 if(peso < minPeso)
                 {
