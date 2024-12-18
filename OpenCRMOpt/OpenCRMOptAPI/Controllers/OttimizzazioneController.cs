@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OpenCRMOptAPI.Ottimizzazione;
 using OpenCRMOptModels;
 using System.Diagnostics;
@@ -61,7 +62,7 @@ namespace OpenCRMOptAPI.Controllers
         }
 
         // GET: api/OttimizzazioneConEuristica
-        [HttpGet("OttimizzazioneNaive")]
+        [HttpPost("OttimizzazioneNaive")]
         public async Task<ActionResult<RisultatoOttimizzazione>> GetOttimizzazioneNaive()
         {
 
@@ -75,21 +76,21 @@ namespace OpenCRMOptAPI.Controllers
 
                 var unwrapped = (OkObjectResult)matriceLottiMacchine;
 
-                var matriceLM = (List<LottiMacchine>)unwrapped.Value!;
+                var value = unwrapped.Value;
 
-                //var json = JsonConvert.SerializeObject(res);
+                var json = JsonConvert.SerializeObject(value);
+
+                var matriceLM = JsonConvert.DeserializeObject<List<LottiMacchine>>(json);
 
                 var ottimizzatore = new Ottimizzatore(_context);
 
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                var res = await ottimizzatore.OttimizzaConEuristica(matriceLM);
+                var res = ottimizzatore.OttimizzaNaive(matriceLM);
 
                 stopwatch.Stop();
-                //elapsed_time = stopwatch.ElapsedMilliseconds;
-
-                
+                res.TempoTrascorso = stopwatch.Elapsed.TotalMilliseconds;
 
                 return Ok(res);
 

@@ -45,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        @for (int i = 0; i< Model.RisultatoConEuristica.Assegnamenti.Count; i++) // gli asssegna all inizio dei tempi un risultato vuoto
+        @for (int i = 0; i< Model.RisultatoConEuristica.Assegnamenti.Count; i++) // gli asssegno all inizio dei tempi un risultato vuoto
         {
             <tr>
                 <td>
@@ -57,7 +57,7 @@
                 <td>
                     @for (int j = 0; j < Model.RisultatoConEuristica.Assegnamenti[i].Count; j++)
                     {
-                        @: Lotto @Model.RisultatoConEuristica.Assegnamenti[i][j];
+                        @: L @Model.RisultatoConEuristica.Assegnamenti[i][j];
                     }
                 </td>
 
@@ -71,3 +71,64 @@
 <div>
     <input type="button" value="Ottimizza Naive" onclick="location.href='@Url.Action("OttimizzaNaive", "Ottimizzazione")'" />
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Peso
+            </th>
+            <th>
+                Tempo Trascorso [ms]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Model.RisultatoNaive.Peso
+            </td>
+            <td>
+                @Model.RisultatoNaive.TempoTrascorso
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Macchine
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RisultatoNaive.PezziAssegnati)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RisultatoNaive.Assegnamenti)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i< Model.RisultatoNaive.Assegnamenti.Count; i++) // gli asssegna all inizio dei tempi un risultato vuoto
+        {
+            <tr>
+                <td>
+                    Macchina @i
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.RisultatoNaive.PezziAssegnati[i])
+                </td>
+                <td>
+                    @for (int j = 0; j < Model.RisultatoNaive.Assegnamenti[i].Count; j++)
+                    {
+                        @: L @Model.RisultatoNaive.Assegnamenti[i][j];
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
