@@ -15,7 +15,7 @@ namespace OpenCRMOptModels
             Initialize(0);
         }
 
-        public long TempoTrascorso { get; set; }
+        public double TempoTrascorso { get; set; }
 
         public int Peso
         {

@@ -43,10 +43,11 @@ namespace OpenCRMOptAPI.Controllers
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
+
                 var res = await ottimizzatore.OttimizzaConEuristica(matriceLM);
 
                 stopwatch.Stop();
-                res.TempoTrascorso = stopwatch.ElapsedMilliseconds;
+                res.TempoTrascorso = stopwatch.Elapsed.TotalMilliseconds;
                
 
                 return Ok(res);
