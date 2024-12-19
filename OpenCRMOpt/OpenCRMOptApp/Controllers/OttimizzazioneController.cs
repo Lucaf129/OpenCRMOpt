@@ -34,41 +34,7 @@ namespace OpenCRMOptApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> OttimizzaNaive()
-        {
-            var httpClient = _httpClientFactory.CreateClient();
-
-            var httpResponseMessage = await httpClient.PostAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneNaive", null);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
-            {
-
-                var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
-                StreamReader reader = new StreamReader(contentStream);
-                string text = reader.ReadToEnd();
-
-                RisultatoOttimizzazione res = new RisultatoOttimizzazione();
-
-                res = JsonConvert.DeserializeObject<RisultatoOttimizzazione>(text);
-
-                //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
-
-                //res.GetPeso();
-
-                _model.RisultatoNaive = res;
-                if (_model.RisultatoConEuristica == null)
-                {
-                    _model.RisultatoConEuristica = new RisultatoOttimizzazione();
-                }
-
-                return View("Index", _model);
-            }
-
-            return View("Index");
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> OttimizzaConEuristica()
+        public async Task<IActionResult> Ottimizza()
         {
             var httpClient = _httpClientFactory.CreateClient();
 
@@ -87,19 +53,37 @@ namespace OpenCRMOptApp.Controllers
 
                 //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
 
-
                 //res.GetPeso();
 
                 _model.RisultatoConEuristica = res;
-                if (_model.RisultatoNaive == null)
-                {
-                    _model.RisultatoNaive = new RisultatoOttimizzazione();
-                }
 
-                return View("Index", _model);
+                httpResponseMessage = await httpClient.PostAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneNaive", null);
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+
+                    contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+                    reader = new StreamReader(contentStream);
+                    text = reader.ReadToEnd();
+
+                    res = new RisultatoOttimizzazione();
+
+                    res = JsonConvert.DeserializeObject<RisultatoOttimizzazione>(text);
+
+                    //var lottiList = JsonSerializer.Deserialize<List<Lotti>>(text);
+
+                    //res.GetPeso();
+
+                    _model.RisultatoNaive = res;
+
+                    return View("Index", _model);
+                }
+                return View("Index");
             }
 
             return View("Index");
         }
+
+       
     }
 }
