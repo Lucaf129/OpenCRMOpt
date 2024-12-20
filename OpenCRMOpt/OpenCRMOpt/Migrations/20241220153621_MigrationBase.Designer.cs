@@ -11,8 +11,8 @@ using OpenCRMOptModels;
 namespace OpenCRMOptModels.Migrations
 {
     [DbContext(typeof(OptDbContext))]
-    [Migration("20241102143717_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241220153621_MigrationBase")]
+    partial class MigrationBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
