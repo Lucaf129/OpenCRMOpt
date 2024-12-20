@@ -1,0 +1,32 @@
+﻿@model OpenCRMOptModels.RandomDataSeeder
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Seed">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nLotti" class="control-label"></label>
+                <input asp-for="nLotti" class="form-control" />
+                <span asp-validation-for="nLotti" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nMacchine" class="control-label"></label>
+                <input asp-for="nMacchine" class="form-control" />
+                <span asp-validation-for="nMacchine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nModelli" class="control-label"></label>
+                <input asp-for="nModelli" class="form-control" />
+                <span asp-validation-for="nModelli" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="coefSparsitaMatrice" class="control-label"></label>
+                <input asp-for="coefSparsitaMatrice" class="form-control" />
+                <span asp-validation-for="coefSparsitaMatrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Seed" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
