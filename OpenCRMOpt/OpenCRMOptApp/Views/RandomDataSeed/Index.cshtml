@@ -1,0 +1,44 @@
+﻿@model OpenCRMOptModels.RandomDataSeeder
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Seed">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NLotti" class="control-label"></label>
+                <input asp-for="NLotti" class="form-control" />
+                <span asp-validation-for="NLotti" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NMacchine" class="control-label"></label>
+                <input asp-for="NMacchine" class="form-control" />
+                <span asp-validation-for="NMacchine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NModelli" class="control-label"></label>
+                <input asp-for="NModelli" class="form-control" />
+                <span asp-validation-for="NModelli" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefSparsitaMatrice" class="control-label"></label>
+                <input asp-for="CoefSparsitaMatrice" class="form-control" />
+                <span asp-validation-for="CoefSparsitaMatrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Seed" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

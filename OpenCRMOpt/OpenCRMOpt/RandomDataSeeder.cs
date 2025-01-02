@@ -11,15 +11,15 @@ namespace OpenCRMOptModels
     {
 
         [Range(1,100)]
-        public int nLotti {  get; set; }
+        public int NLotti {  get; set; }
 
         [Range(1, 100)]
-        public int nMacchine { get; set; }
+        public int NMacchine { get; set; }
 
         [Range(1, 100)]
-        public int nModelli { get; set; }
+        public int NModelli { get; set; }
 
-        public float coefSparsitaMatrice { get; set; }
+        public float CoefSparsitaMatrice { get; set; }
 
     }
 }
