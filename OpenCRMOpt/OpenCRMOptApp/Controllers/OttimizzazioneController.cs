@@ -38,6 +38,9 @@ namespace OpenCRMOptApp.Controllers
         {
             var httpClient = _httpClientFactory.CreateClient();
 
+            // questo httpclient potrà aspettare più a lungo degli altri
+            httpClient.Timeout = TimeSpan.FromMinutes(10);
+
             var httpResponseMessage = await httpClient.PostAsync("http://localhost:5055/api/Ottimizzazione/OttimizzazioneConEuristica", null);
 
             if (httpResponseMessage.IsSuccessStatusCode)
