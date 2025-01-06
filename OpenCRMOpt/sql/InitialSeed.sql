@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Lotti](
-	[LottoID] [bigint] IDENTITY(1,1) NOT NULL,
+	[LottoID] [bigint] NOT NULL,
 	[Modello] [int] NOT NULL,
 	[Note] [nvarchar](max) NULL,
 	[Quantita] [int] NOT NULL,
@@ -22,7 +22,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Macchine](
-	[MacchineID] [int] IDENTITY(1,1) NOT NULL,
+	[MacchineID] [int] NOT NULL,
 	[Descrizione] [nvarchar](max) NULL,
 	[Name] [nvarchar](50) NULL,
 	[IP] [nvarchar](50) NULL,
@@ -38,7 +38,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ModelliLotti](
-	[ModelloID] [int] IDENTITY(1,1) NOT NULL,
+	[ModelloID] [int] NOT NULL,
 	[Descrizione] [nvarchar](max) NOT NULL,
 	[MacchineCompatibili] [nvarchar](500) NOT NULL,
  CONSTRAINT [PK_ModelliLotti] PRIMARY KEY CLUSTERED 
